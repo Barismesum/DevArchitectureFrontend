@@ -176,6 +176,7 @@ export class CustomerComponent implements OnInit,AfterViewInit {
       this.alertifyService.success(data.toString());
       var index = this.customerList.findIndex(x => x.customerId == id);
       this.customerList[index].isDeleted = true;
+      this.customerList=this.customerList.filter(x=>x.isDeleted !=true)
       this.dataSource = new MatTableDataSource(this.customerList);
 			this.configDataTable();
     });

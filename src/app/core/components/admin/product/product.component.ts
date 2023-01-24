@@ -118,6 +118,7 @@ clearFormGroup(group: FormGroup) {
       this.alertifyService.success(data.toString());
       var index = this.productList.findIndex(x => x.productId == id);
       this.productList[index].isDeleted = true;
+      this.productList=this.productList.filter(x=>x.isDeleted !=true)
       this.dataSource = new MatTableDataSource(this.productList);
 	  this.configDataTable();
     });
@@ -140,6 +141,13 @@ clearFormGroup(group: FormGroup) {
       this.product=data;
       this.productAddForm.patchValue(data);
     })
+  }
+
+  statusCheck(){
+    if(this.product.isDeleted==true){
+     return false}
+    else
+     return true
   }
 
 }

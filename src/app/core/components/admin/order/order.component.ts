@@ -111,6 +111,7 @@ export class OrderComponent implements OnInit,AfterViewInit {
       this.alertifyService.success(data.toString());
       var index=this.orderList.findIndex(x=>x.orderId==id);
       this.orderList[index].isDeleted=true;
+      this.orderList=this.orderList.filter(x=>x.isDeleted !=true)
       this.dataSource=new MatTableDataSource(this.orderList);
       this.configDataTable();
     })

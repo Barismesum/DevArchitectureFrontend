@@ -121,6 +121,7 @@ export class StorageComponent implements OnInit,AfterViewInit {
       this.alertifyService.success(data.toString());
       var index = this.storageList.findIndex(x => x.storageId == id);
       this.storageList[index].isDeleted = true;
+      this.storageList=this.storageList.filter(x=>x.isDeleted !=true)
       this.dataSource = new MatTableDataSource(this.storageList);
 			this.configDataTable();
     });
