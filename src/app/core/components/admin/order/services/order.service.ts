@@ -33,5 +33,9 @@ export class OrderService {
   deleteOrder(id:number){
     return this.httpClient.request('delete',environment.getApiUrl+"/Orders",{body:{orderId:id}})
   }
+  getOrderListDto(): Observable<Order[]> {
+
+    return this.httpClient.get<Order[]>(environment.getApiUrl + '/Orders/getorderlistdto')
+  }
  
 }

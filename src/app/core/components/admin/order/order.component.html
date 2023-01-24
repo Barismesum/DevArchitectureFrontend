@@ -27,12 +27,12 @@
   
                   <ng-container matColumnDef="customerId">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'customerId' |translate}} </th>
-                    <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
                   </ng-container>
 
                  <ng-container matColumnDef="productId" >
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'productId' |translate}} </th>
-                    <td mat-cell *matCellDef="let element"> {{element.productId}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
                  </ng-container>
   
   
@@ -97,22 +97,15 @@
         <form *ngIf="orderAddForm" [formGroup]="orderAddForm" (ngSubmit)="save()">
           <div class="row">
             <div class="col-md-6">
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder=" {{'productId'|translate}}" type="text" id="productId" name="productId"
-                  formControlName="productId">
-                <div class="alert alert-danger"
-                     *ngIf="orderAddForm.get('productId')!.hasError('required') && orderAddForm.get('productId')!.touched">{{'Required'| translate}}
-                </div>
-              </mat-form-field>
+              <select class="browser-default custom-select" name="productId" formControlName="productId">
+                <option *ngFor="let item of productlookUp" [ngValue]="item.id"> {{item.label}}</option>
+              </select>
             </div>
 
             <div class="col-md-6">
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="{{'customerId'|translate}}" type="text" id="customerId" name="customerId"
-                  formControlName="customerId">
-                <div class="alert alert-danger"
-                  *ngIf="orderAddForm.get('customerId')!.hasError('required') && orderAddForm.get('customerId')!.dirty"></div>
-              </mat-form-field>
+              <select class="browser-default custom-select" name="customerId" formControlName="customerId">
+                <option *ngFor="let item of customerlookUp" [ngValue]="item.id"> {{item.label}}</option>
+              </select>
             </div>
             <div class="col-md-6">
               <mat-form-field class="example-full-width">

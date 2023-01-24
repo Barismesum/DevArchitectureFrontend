@@ -31,4 +31,9 @@ export class StorageService {
   deleteStorage(id:number){
     return this.httpClient.request('delete',environment.getApiUrl+"/Storages",{body:{storageId:id}})
   }
+
+  getStorageListDto(): Observable<Storage[]> {
+
+    return this.httpClient.get<Storage[]>(environment.getApiUrl + '/Storages/getstoragelistdto')
+  }
 }

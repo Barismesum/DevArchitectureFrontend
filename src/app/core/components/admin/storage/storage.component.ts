@@ -10,6 +10,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Storage } from './models/storage';
+import { LookUpService } from 'app/core/services/lookUp.service';
+import { LookUp } from 'app/core/models/lookUp';
 
 declare var jQuery: any;
 
@@ -26,7 +28,7 @@ export class StorageComponent implements OnInit,AfterViewInit {
   displayedColumns:string[]=["storageId","productId","productStock","isReady","isDeleted","update","delete"];
 
 
-
+  productlookUp:LookUp[];
   storage:Storage;
   storageList:Storage[];
   dropdownSettings: IDropdownSettings;
@@ -36,7 +38,8 @@ export class StorageComponent implements OnInit,AfterViewInit {
     private storageService:StorageService,
     private formBuilder:FormBuilder,
     private alertifyService:AlertifyService,
-    private authService:AuthService
+    private authService:AuthService,
+    private lookupService:LookUpService
   ) { }
 
   
@@ -46,6 +49,10 @@ export class StorageComponent implements OnInit,AfterViewInit {
 
   ngOnInit(): void {
     this.createStorageAddForm();
+
+    this.lookupService.getProductLookup().subscribe(data=>{
+      this.productlookUp=data;
+    });
     this.dropdownSettings=environment.getDropDownSetting;
   }
   storageAddForm:FormGroup;
@@ -80,7 +87,7 @@ export class StorageComponent implements OnInit,AfterViewInit {
   }
 
   getStorageList(){
-    this.storageService.getStorageList().subscribe(data=>{
+    this.storageService.getStorageListDto().subscribe(data=>{
       this.storageList=data;
       this.dataSource=new MatTableDataSource(data);
     })

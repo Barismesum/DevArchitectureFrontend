@@ -9,6 +9,9 @@ import { AuthService } from '../login/services/auth.service';
 import { OrderService } from './services/order.service';
 import { Order } from './models/order';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { LookUp } from 'app/core/models/lookUp';
+import { LookUpService } from 'app/core/services/lookUp.service';
+
 declare var jQuery: any;
 
 @Component({
@@ -23,12 +26,16 @@ export class OrderComponent implements OnInit,AfterViewInit {
 
   order:Order;
   orderList:Order[];
+
+  customerlookUp:LookUp[];
+  productlookUp:LookUp[];
   dropdownSettings: IDropdownSettings;
   constructor(
     private formBuilder:FormBuilder,
     private alertifyService:AlertifyService,
     private authService:AuthService,
-    private orderService:OrderService
+    private orderService:OrderService,
+    private lookupService:LookUpService
   ) { }
 
   ngAfterViewInit(): void {
@@ -37,6 +44,15 @@ export class OrderComponent implements OnInit,AfterViewInit {
 
   ngOnInit(): void {
     this.createOrderAddForm();
+
+    this.lookupService.getCustomerLookup().subscribe(data => {
+			this.customerlookUp = data;
+		});
+
+    this.lookupService.getProductLookup().subscribe(data=>{
+      this.productlookUp=data;
+    });
+
     this.dropdownSettings=environment.getDropDownSetting;
   }
   orderAddForm:FormGroup;
@@ -71,8 +87,9 @@ export class OrderComponent implements OnInit,AfterViewInit {
   }
 
   getOrderList(){
-    this.orderService.getOrderList().subscribe(data=>{
+    this.orderService.getOrderListDto().subscribe(data=>{
       this.orderList=data;
+     
       this.dataSource=new MatTableDataSource(data);
     })
   }
