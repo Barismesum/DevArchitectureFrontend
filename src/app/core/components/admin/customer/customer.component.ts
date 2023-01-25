@@ -120,7 +120,7 @@ export class CustomerComponent implements OnInit,AfterViewInit {
   getCustomerList(){
     this.customerService.getCustomerList().subscribe(data=>{
       this.customerList=data;
-      this.dataSource=new MatTableDataSource(data);
+      this.dataSource=new MatTableDataSource(data.filter(x=>x.isDeleted!=true));
     })
   }
 

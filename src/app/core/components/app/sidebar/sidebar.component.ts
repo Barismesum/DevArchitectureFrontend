@@ -25,10 +25,10 @@ export const ADMINROUTES: RouteInfo[] = [
 
 export const USERROUTES: RouteInfo[] = [ 
   //{ path: '/log', title: 'Logs', icon: 'update', class: '', claim: "GetLogDtoQuery" }
-  { path:'/customer',title:'Customers',icon:'groups',class:'',claim:"GetCustomersQuery"},
-  { path:'/storage', title:'Storage',icon:'groups',class:'',claim:"GetStoragesQuery"},
-  { path:'/product', title:'Product', icon:'groups',class:'',claim:"GetProductsQuery"},
-  { path:'/order', title:'Order', icon:'groups',class:'',claim:"GetOrdersQuery"}
+  { path:'/customer',title:'Customers',icon:'person',class:'',claim:"GetCustomersQuery"},
+  { path:'/storage', title:'Storage',icon:'storage',class:'',claim:"GetStoragesQuery"},
+  { path:'/product', title:'Product', icon:'storefront',class:'',claim:"GetProductsQuery"},
+  { path:'/order', title:'Order', icon:'shopping_cart',class:'',claim:"GetOrdersQuery"}
 ];
 
 @Component({

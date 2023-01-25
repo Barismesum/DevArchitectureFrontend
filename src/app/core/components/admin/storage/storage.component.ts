@@ -89,7 +89,7 @@ export class StorageComponent implements OnInit,AfterViewInit {
   getStorageList(){
     this.storageService.getStorageListDto().subscribe(data=>{
       this.storageList=data;
-      this.dataSource=new MatTableDataSource(data);
+      this.dataSource=new MatTableDataSource(data.filter(x=>x.isDeleted!=true));
     })
   }
 

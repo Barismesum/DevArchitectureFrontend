@@ -43,7 +43,7 @@
   
                   <ng-container matColumnDef="isDeleted">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Status' |translate}} </th>
-                    <td mat-cell *matCellDef="let element">
+                    <td mat-cell *matCellDef="let element" >
                       <mat-checkbox [checked]="element.isDeleted" [disabled]="true">
                       </mat-checkbox>
                     </td>

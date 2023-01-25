@@ -76,7 +76,7 @@ export class ProductComponent implements OnInit,AfterViewInit {
   getProductList(){
     this.productService.getProductList().subscribe(data=>{
       this.productList=data;
-      this.dataSource=new MatTableDataSource(data);
+      this.dataSource=new MatTableDataSource(data.filter(x=>x.isDeleted!=true));
     })
   }
 

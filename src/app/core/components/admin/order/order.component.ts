@@ -11,6 +11,7 @@ import { Order } from './models/order';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { LookUp } from 'app/core/models/lookUp';
 import { LookUpService } from 'app/core/services/lookUp.service';
+import { filter } from 'rxjs/operators';
 
 declare var jQuery: any;
 
@@ -89,8 +90,7 @@ export class OrderComponent implements OnInit,AfterViewInit {
   getOrderList(){
     this.orderService.getOrderListDto().subscribe(data=>{
       this.orderList=data;
-     
-      this.dataSource=new MatTableDataSource(data);
+      this.dataSource=new MatTableDataSource(data.filter(x=>x.isDeleted!=true));
     })
   }
 
@@ -142,7 +142,7 @@ export class OrderComponent implements OnInit,AfterViewInit {
   applyFilter(event: Event) {
 		const filterValue = (event.target as HTMLInputElement).value;
 		this.dataSource.filter = filterValue.trim().toLowerCase();
-
+   
 		if (this.dataSource.paginator) {
 			this.dataSource.paginator.firstPage();
 		}
