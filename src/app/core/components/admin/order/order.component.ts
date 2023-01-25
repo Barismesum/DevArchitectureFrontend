@@ -84,7 +84,12 @@ export class OrderComponent implements OnInit,AfterViewInit {
       jQuery("#order").modal("hide");
       this.alertifyService.success(data);
       this.clearFormGroup(this.orderAddForm)
-    })
+    },
+    error => {
+      this.alertifyService.error(error.error);
+      jQuery("#order").modal("hide");
+    }
+    )
   }
 
   getOrderList(){

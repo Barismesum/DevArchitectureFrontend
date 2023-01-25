@@ -94,7 +94,7 @@
           {{'Order'| translate}}
         </h4>
         <div class="separator"></div>
-        <form *ngIf="orderAddForm" [formGroup]="orderAddForm" (ngSubmit)="save()">
+        <form *ngIf="orderAddForm" [formGroup]="orderAddForm" (ngSubmit)="save()" >
           <div class="row">
             <div class="col-md-6">
               <select class="browser-default custom-select" name="productId" formControlName="productId">
@@ -110,7 +110,7 @@
             <div class="col-md-6">
               <mat-form-field class="example-full-width">
                 <input matInput placeholder="{{'piece'|translate}}" type="text" id="piece" name="piece"
-                  formControlName="piece">
+                  formControlName="piece" >
                 <div class="alert alert-danger"
                   *ngIf="orderAddForm.get('piece')!.hasError('required') && orderAddForm.get('piece')!.dirty"></div>
               </mat-form-field>
@@ -130,4 +130,8 @@
 
   <swal #deleteSwal title="{{'DeleteConfirm' | translate}}" icon="error" [showCancelButton]="true"
   [confirmButtonText]="'OK'" [cancelButtonText]="'Cancel'">
+</swal>
+
+<swal #errorSwal title="{{'Hata' | translate}}" icon="error" [showCancelButton]="true"
+[confirmButtonText]="'OK'" [cancelButtonText]="'Cancel'">
 </swal>
