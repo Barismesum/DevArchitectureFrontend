@@ -37,5 +37,8 @@ export class LookUpService {
   getProductLookup():Observable<LookUp[]>{
     return this.httpClient.get<LookUp[]>(environment.getApiUrl+"/Products/getproductlookup")
   }
+  getStorageLookup():Observable<LookUp[]>{
+    return this.httpClient.get<LookUp[]>(environment.getApiUrl+"/Storages/getstoragelookup")
+  }
 
 }

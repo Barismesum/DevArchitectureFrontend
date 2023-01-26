@@ -96,6 +96,7 @@ export class StorageComponent implements OnInit,AfterViewInit {
   updateStorage(){
     this.storageService.updateStorage(this.storage).subscribe(data=>{
       var index=this.storageList.findIndex(x=>x.storageId==this.storage.storageId);
+    // let updatedoBJ:"";=updatedoBJ;
       this.storageList[index]=this.storage;
       this.dataSource=new MatTableDataSource(this.storageList);
       this.configDataTable();

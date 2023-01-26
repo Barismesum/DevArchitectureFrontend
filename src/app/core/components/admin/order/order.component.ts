@@ -50,7 +50,7 @@ export class OrderComponent implements OnInit,AfterViewInit {
 			this.customerlookUp = data;
 		});
 
-    this.lookupService.getProductLookup().subscribe(data=>{
+    this.lookupService.getStorageLookup().subscribe(data=>{
       this.productlookUp=data;
     });
 
